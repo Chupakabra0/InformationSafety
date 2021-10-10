@@ -1,3 +1,4 @@
+#pragma once
 #include <list>
 #include <algorithm>
 #include "SimpleReplacement.h"
@@ -7,7 +8,7 @@ void Lab1::SimpleReplacement::shuffleCypher()
 	std::random_shuffle(cypher_.begin(), cypher_.end());
 }
 
-std::string Lab1::SimpleReplacement::crypt(std::string word)
+std::string Lab1::SimpleReplacement::encrypt(const std::string& word)
 {
 	auto result = std::string{};
 
@@ -20,7 +21,7 @@ std::string Lab1::SimpleReplacement::crypt(std::string word)
 	return result;
 }
 
-std::string Lab1::SimpleReplacement::decrypt(std::string word)
+std::string Lab1::SimpleReplacement::decrypt(const std::string& word)
 {
 	auto result = std::string{};
 
@@ -33,12 +34,12 @@ std::string Lab1::SimpleReplacement::decrypt(std::string word)
 	return result;
 }
 
-std::string Lab1::SimpleReplacement::getAlphabet()
+const std::string& Lab1::SimpleReplacement::getAlphabet()
 {
 	return alphabet_;
 }
 
-std::string Lab1::SimpleReplacement::getCypher()
+const std::string& Lab1::SimpleReplacement::getCypher()
 {
 	return cypher_;
 }

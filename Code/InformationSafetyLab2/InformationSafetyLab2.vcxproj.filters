@@ -21,9 +21,15 @@
     <ClCompile Include="SimpleReplacement.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Vigenere.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SimpleReplacement.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Vigenere.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
