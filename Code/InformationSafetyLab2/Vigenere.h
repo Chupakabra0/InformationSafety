@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 
+using uint = unsigned int;
+
 namespace Lab1
 {
 	class Vigenere
@@ -12,11 +14,11 @@ namespace Lab1
 		std::string encrypt(const std::string& word, const std::string& key);
 		std::string decrypt(const std::string& word, const std::string& key);
 
-		const std::string& getAlphabet();
+		const std::string& getAlphabet() const;
 
 	private:
-		inline unsigned int modSum(unsigned int first, unsigned int second, unsigned int N);
-		inline unsigned int modDif(int first, int second, unsigned int N);
+		inline uint modSum(uint first, uint second, uint N);
+		inline uint modDif(int first, int second, uint N);
 
 		const std::string alphabet_;
 	};

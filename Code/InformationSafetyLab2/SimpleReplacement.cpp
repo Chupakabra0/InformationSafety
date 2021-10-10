@@ -10,7 +10,7 @@ void Lab1::SimpleReplacement::shuffleCypher()
 
 std::string Lab1::SimpleReplacement::encrypt(const std::string& word)
 {
-	auto result = std::string{};
+	std::string result;
 
 	for (auto it = word.begin(); it != word.end(); ++it)
 	{
@@ -23,7 +23,7 @@ std::string Lab1::SimpleReplacement::encrypt(const std::string& word)
 
 std::string Lab1::SimpleReplacement::decrypt(const std::string& word)
 {
-	auto result = std::string{};
+	std::string result;
 
 	for (auto it = word.begin(); it != word.end(); ++it)
 	{
@@ -34,12 +34,12 @@ std::string Lab1::SimpleReplacement::decrypt(const std::string& word)
 	return result;
 }
 
-const std::string& Lab1::SimpleReplacement::getAlphabet()
+const std::string& Lab1::SimpleReplacement::getAlphabet() const
 {
 	return alphabet_;
 }
 
-const std::string& Lab1::SimpleReplacement::getCypher()
+const std::string& Lab1::SimpleReplacement::getCypher() const
 {
 	return cypher_;
 }

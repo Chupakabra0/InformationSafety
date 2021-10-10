@@ -13,8 +13,8 @@ namespace Lab1
 		std::string encrypt(const std::string& word);
 		std::string decrypt(const std::string& word);
 
-		const std::string& getAlphabet();
-		const std::string& getCypher();
+		const std::string& getAlphabet() const;
+		const std::string& getCypher() const;
 
 		~SimpleReplacement() {}
 	private:

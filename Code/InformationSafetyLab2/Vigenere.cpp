@@ -2,18 +2,19 @@
 #include <vector>
 #include "Vigenere.h"
 
-const std::string& Lab1::Vigenere::getAlphabet()
+const std::string& Lab1::Vigenere::getAlphabet() const
 {
 	return alphabet_;
 }
 
 std::string Lab1::Vigenere::encrypt(const std::string& word, const std::string& key)
 {
-	auto result = std::string{};
-	auto wordNumbers = std::vector<int>();
-	auto keyNumbers = std::vector<int>();
+	std::string result{};
+	std::vector<int> wordNumbers;
+	std::vector<int> keyNumbers;
 
 	auto wordLength = word.length();
+	result.reserve(wordLength);
 
 	for (auto it = word.begin(); it != word.end(); ++it)
 	{
@@ -42,11 +43,12 @@ std::string Lab1::Vigenere::encrypt(const std::string& word, const std::string& 
 
 std::string Lab1::Vigenere::decrypt(const std::string& word, const std::string& key)
 {
-	auto result = std::string{};
-	auto wordNumbers = std::vector<int>();
-	auto keyNumbers = std::vector<int>();
+	std::string result{};
+	std::vector<int> wordNumbers;
+	std::vector<int> keyNumbers;
 
 	auto wordLength = word.length();
+	result.reserve(wordLength);
 
 	for (auto it = word.begin(); it != word.end(); ++it)
 	{
@@ -73,7 +75,7 @@ std::string Lab1::Vigenere::decrypt(const std::string& word, const std::string& 
 	return result;
 }
 
-inline unsigned int Lab1::Vigenere::modSum(unsigned int first, unsigned int second, unsigned int N)
+inline uint Lab1::Vigenere::modSum(uint first, uint second, uint N)
 {
 	if (first + second >= N)
 	{
@@ -83,7 +85,7 @@ inline unsigned int Lab1::Vigenere::modSum(unsigned int first, unsigned int seco
 	return first + second;
 }
 
-inline unsigned int Lab1::Vigenere::modDif(int first, int second, unsigned int N)
+inline uint Lab1::Vigenere::modDif(int first, int second, uint N)
 {
 	if (first - second < 0)
 	{
