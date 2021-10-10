@@ -1,4 +1,5 @@
-﻿#include <Windows.h>
+﻿#pragma once
+#include <Windows.h>
 #include "SimpleReplacement.h"
 #include <algorithm>
 
@@ -9,6 +10,7 @@ int main(const int argc, char* argv[])
 	SetConsoleOutputCP(1251);
 
 	auto alphabet = std::string{ "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ " };
+	std::string cypher = alphabet;
 	auto word = std::string{ "ПРИВЕТ" };
 
 	if (argc == 2)
@@ -20,7 +22,7 @@ int main(const int argc, char* argv[])
 
 	try
 	{
-		auto simple = Lab1::SimpleReplacement(alphabet, alphabet);
+		auto simple = Lab1::SimpleReplacement(alphabet, cypher);
 
 		simple.shuffleCypher();
 
