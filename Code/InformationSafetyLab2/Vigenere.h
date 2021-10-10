@@ -8,7 +8,7 @@ namespace Lab1
 	class Vigenere
 	{
 	public:
-		Vigenere(const std::string& alphabet): 
+		explicit Vigenere(const std::string& alphabet): 
 			alphabet_(alphabet){}
 
 		std::string encrypt(const std::string& word, const std::string& key);
