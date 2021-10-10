@@ -142,9 +142,11 @@
   <ItemGroup>
     <ClCompile Include="InformationSafetyLab2.cpp" />
     <ClCompile Include="SimpleReplacement.cpp" />
+    <ClCompile Include="Vigenere.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SimpleReplacement.h" />
+    <ClInclude Include="Vigenere.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
