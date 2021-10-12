@@ -5,58 +5,100 @@
 #include "SimpleReplacement.h"
 #include "Vigenere.h"
 
+#include "argparser/argparse.hpp"
+
 
 int main(const int argc, char* argv[])
 {
+	// config part
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-
 	auto alphabet = std::string{ "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ " };
 	std::string cypher = alphabet;
-	auto word = std::string{ "Я ЛЮБЛЮ КУШАТЬ" };
-	auto key = std::string{ "Я И ЕДА" };
 
-	if (argc == 2)
+	// argparse part
+	argparse::ArgumentParser program("InformationSafetyLab2.exe");
+
+	program.add_argument("-sr", "--SimpleReplacement")
+		.default_value<bool>(false)
+		.implicit_value(true)
+		.help("enables to use SimpleReplacement crypt");
+
+	program.add_argument("-vig", "--Vigenere")
+		.default_value<bool>(false)
+		.implicit_value(true)
+		.help("enables to use Vigenere crypt");
+
+	program.add_argument("-w", "--Word")
+		.default_value<std::string>("ЭТО СЛОВО")
+		.help("use this param for any crypt");
+
+	program.add_argument("-k", "--Key")
+		.default_value<std::string>("ЭТО КЛЮЧ")
+		.help("use this param for Vigenere crypt");
+
+	program.add_argument("-d", "--Direction")
+		.default_value<std::string>("f")
+		.help("process direction [f or b]");
+
+	program.add_argument("-a")
+		.help("alphabet = АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ (and space)");
+
+	try 
 	{
-		word = static_cast<std::string>(argv[1]);
-		std::replace(word.begin(), word.end(), '_', ' ');
+		program.parse_args(argc, argv);
+	}
+	catch (const std::runtime_error& error) 
+	{
+		std::cout << error.what() << std::endl;
+		std::cout << program;
+		exit(0);
 	}
 
+	// crypt part
+	auto direction = program.get<std::string>("--Direction");
+	auto word = program.get<std::string>("--Word");
 	try
 	{
-		//auto simple = Lab1::SimpleReplacement(alphabet, cypher);
+		if (static_cast<uint>(program.get<bool>("--SimpleReplacement")))
+		{
+			auto simple = Lab1::SimpleReplacement(alphabet, cypher);
+			simple.shuffleCypher();
 
-		//simple.shuffleCypher();
+			if (direction._Equal(static_cast<const char*>("f")))
+			{
+				std::cout << simple.encrypt(word) << "\n";
+			}
+			else
+			{
+				std::cout << simple.decrypt(word) << "\n";
+			}
+		}
+		else if (program.get<bool>("--Vigenere"))
+		{
+			auto key = program.get<std::string>("--Key");
+			auto vigenere = Lab1::Vigenere::Vigenere(alphabet);
 
-		//std::cout << simple.getAlphabet() << "\n";
-		//std::cout << simple.getCypher() << "\n";
-
-		//auto result = simple.encrypt(word);
-
-		//std::cout << result << "\n";
-
-		//auto result2 = simple.decrypt(result);
-
-		//std::cout << result2 << "\n";
-
-		auto vigenere = Lab1::Vigenere::Vigenere(alphabet);
-
-		std::cout << vigenere.getAlphabet() << "\n";
-
-		auto result = vigenere.encrypt(word, key);
-
-		std::cout << result << "\n";
-
-		auto result2 = vigenere.decrypt(result, key);
-
-		std::cout << result2 << "\n";
+			if (direction._Equal(static_cast<const char*>("f")))
+			{
+				std::cout << vigenere.encrypt(word, key) << "\n";
+			}
+			else
+			{
+				std::cout << vigenere.decrypt(word, key) << "\n";
+			}
+		}
+		else
+		{
+			std::cout << "You didnt shoose any crypt type. Plz, try again." << "\n";
+		}
 	}
-	catch (const std::exception& exception)
+	catch (const std::exception& error)
 	{
-		std::cout << "Error: " << exception.what() << "\n";
+		std::cout << error.what() << std::endl;
+		std::cout << program;
+		exit(0);
 	}
-
-
 
 	system("pause");
 }

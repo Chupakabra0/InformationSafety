@@ -1,11 +1,17 @@
 #pragma once
 #include <list>
 #include <algorithm>
+#include <iostream>
 #include "SimpleReplacement.h"
 
+//shall to rewrite this shuffler
 void Lab1::SimpleReplacement::shuffleCypher()
 {
-	std::random_shuffle(cypher_.begin(), cypher_.end());
+	auto cypherLength = cypher_.length();
+	for (auto& i : cypher_)
+	{
+		std::swap(cypher_.at(rand() % cypherLength), cypher_.at(rand() % cypherLength));
+	}
 }
 
 std::string Lab1::SimpleReplacement::encrypt(const std::string& word)
