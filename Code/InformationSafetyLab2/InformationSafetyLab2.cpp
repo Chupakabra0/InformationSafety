@@ -1,6 +1,4 @@
-﻿#pragma once
-#include <Windows.h>
-#include <algorithm>
+﻿#include <Windows.h>
 
 #include "SimpleReplacement.h"
 #include "Vigenere.h"
@@ -13,7 +11,17 @@ int main(const int argc, char* argv[])
 	// config part
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-	auto alphabet = std::string{ "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ " };
+
+	// rus part
+	//auto alphabet = std::string{ "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ " };
+
+	constexpr auto alphabetSize = 26u;
+	std::string alphabet;
+
+	alphabet.resize(alphabetSize);
+	std::iota(alphabet.begin(), alphabet.end(), 'A');
+	alphabet += ' ';
+
 	std::string cypher = alphabet;
 
 	// argparse part
@@ -42,7 +50,7 @@ int main(const int argc, char* argv[])
 		.help("process direction [f or b]");
 
 	program.add_argument("-a")
-		.help("alphabet = АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ (and space)");
+		.help("alphabet = english alphabet (and space)");
 
 	try 
 	{
